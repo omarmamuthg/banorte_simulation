@@ -234,8 +234,76 @@ def algo_mas():
             print("Dato invalido")
             continue
         if _algo_mas =="SI":
-            pass
+            Inicio()
         if _algo_mas =="NO":
             print("\nGracias por utilizar la simulacion de cajero")
             break
         break
+
+
+
+#############################################################################################################################################
+#Se inicia el ENTRY POINT
+def Inicio():
+    import logo_banorte
+    print("\t WELCOME TO YOUR BANK APLICATION")
+    print(logo_banorte.logo)
+    while True:
+        print("""
++-----------------------------------------+
+| Bienvenido, ingrese una opcion:         |
++=========================================+
+|Depósito                       |    D    |
++-----------------------------------------+
+|Consulta de saldo o movimientos|    C    |   
++-----------------------------------------+
+| Retiro                        |    R    |
++-----------------------------------------+
+| Salir                         |    S    |
++-----------------------------------------+
+""")
+        opcion = input("Ingresa una opción: ").upper()
+
+        if opcion == "":
+            print("No omitir.")
+            continue
+        elif (opcion.upper() == "C"):
+            while True:
+                print("""  
++------------------------------------+        
+|Deseas consultar saldo o movimientos|
++------------------------------------+        
+|         saldos         |     S     |
++------------------------------------+
+|        movimientos     |     M     |  
++------------------------------------+""")
+                consultar=input().upper()
+                if consultar =="S":
+                    print(f"Tu saldo actual es: {saldo}")
+                    algo_mas()
+                    break
+                if consultar =="M":
+                    ConsultarMovimientos()
+                    algo_mas()
+                    break
+                else:
+                    print("Opcion invalida")
+                    continue
+                break
+        elif (opcion.upper() == "D"):
+            Depositos()
+            algo_mas()
+            break
+
+        elif (opcion.upper() == "R"):
+            HacerRetiro()
+            algo_mas()
+            break
+        elif (opcion.upper() == "S"):
+            print("\nGracias por usar el simulador.")
+            break
+        else:
+            print("\nopcion no valida")
+            continue
+        break
+Inicio()
