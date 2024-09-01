@@ -212,3 +212,30 @@ def HacerRetiro():
     folio_retiro.append(folio_r)
     datos_r.append([fecha, cant_retiro, hora])
 #HacerRetiro()
+#####################################################################################################################################################
+
+
+def algo_mas():
+    while True:
+        print("""  
++------------------------------------+        
+|¿Deseas hacer alguna otra operacion?|
++------------------------------------+        
+|                SI                  |
++------------------------------------+
+|                NO                  |  
++------------------------------------+""")
+        _algo_mas=input().upper()
+        _algomas=_algo_mas
+        if _algo_mas=="":
+            print("No se debe de omitir el dato")
+            continue
+        if not bool(re.match("^(SI|NO)$",_algomas)):
+            print("Dato invalido")
+            continue
+        if _algo_mas =="SI":
+            pass
+        if _algo_mas =="NO":
+            print("\nGracias por utilizar la simulacion de cajero")
+            break
+        break
