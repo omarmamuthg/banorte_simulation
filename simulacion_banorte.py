@@ -137,3 +137,78 @@ def Depositos():
         break
         
 #Depositos()
+
+########################################################333333######################################################################################################
+
+
+#Se crea la funcion para consultar movimientos.
+def ConsultarMovimientos():
+    if (len(folio_deposito)>0):
+        print("\t.:Movimientos de deposito a mi cuenta:.")
+        for x in range(len(folio_deposito)):
+            print(f"+{'-'*49}+")
+            print(f"|{'Folio':7}|{'Fecha':10}|{'Depósito a mi cuenta ':24}|{'Hora':5}|")
+            print(f"|{'-' * 7:7}|{'-' * 10:10}|{'-' * 24:24}|{'-' * 5:5}|")
+            print(f"|{folio_deposito[x]:7}|{datos_d[x][0]:10}|{datos_d[x][1]:24}|{datos_d[x][2]:5}|")
+            print(f"+{'-'*49}+\n")
+    else:
+        print("\nNo hay depositos de retiro realizados.\n")
+
+    if (len(folio_retiro) > 0):
+        print("\t.:Movimientos de retiro:.")
+        for x in range(len(folio_retiro)):
+            print(f"+{'-'*37}+")
+            print(f"|{'Folio':6}|{'Fecha':10}|{'Retiro':13}|{'Hora':5}|")
+            print(f"|{'-' * 6:6}|{'-' * 10:10}|{'-' * 13:13}|{'-' * 5:5}|")
+            print(f"|{folio_retiro[x]:6}|{datos_r[x][0]:10}|{datos_r[x][1]:13}|{datos_r[x][2]:5}|")
+        print(f"+{'-'*37}+\n")
+    else:
+        print("No hay retiros realizados.\n")
+
+    if (len(folio_transferencia)>0):
+        print("\t.:Movimientos de transferencia:.")
+        for x in range(len(folio_transferencia)):
+            print(f"+{'-'*55}+")
+            print(f"|{'Folio':7}|{'Fecha':10}|{'Transferencia':13}|{'A cuenta':16}|{'Hora':5}|")
+            print(f"|{'-' * 7:7}|{'-' * 10:10}|{'-' * 13:13}|{'-' * 16:16}|{'-' * 5:5}|")
+            print(f"|{folio_transferencia[x]:7}|{datos_t[x][0]:10}|{datos_t[x][1]:13}|{datos_t[x][2]:16}|{datos_t[x][3]:5}|")
+            print(f"+{'-'*55}+\n")
+    else:
+        print("No hay transferencias realizadas.")
+#ConsultarMovimientos()
+
+
+###################################################################################################################################################
+
+#Se crea la funcion para hacer retiros.
+def HacerRetiro():
+    global saldo
+    print("Su saldo actual es de: ",saldo)
+    while True:
+        print("NOTA: monto minimo a retirar $100, monto maximo a depositar $10000 ")
+        _cant_retiro = input("Cuánto deseas retirar?: ")
+        if _cant_retiro == "":
+            print("No se puede omitir el dato.\n")
+            continue
+        if not bool(re.match("^([1][0][0]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9]|[1-9][0-9][0-9][0-9][0-9]|)$", _cant_retiro)):
+            print("Dato invalido\n")
+            continue
+        cant_retiro = int(_cant_retiro)
+        if cant_retiro > saldo:
+            print("No cuentas con saldo suficiente.\n")
+            continue
+        break
+    ahora = datetime.datetime.now()
+    fecha = ahora.strftime("%d-%m-%Y")
+    hora = ahora.strftime("%H:%M")
+    while True:
+        folio_r = random.randint(000000,999999)
+        if folio_r in folio_retiro:
+            continue
+        break
+    cant_retiro = float(_cant_retiro)
+    saldo -= cant_retiro
+    print(f"\nFecha: {fecha} Se realizó el retiro por ${cant_retiro}\nexitosamente a la {hora}\ny su clave de retiro es: {folio_r}.\n\nTu saldo restante es: {saldo}")
+    folio_retiro.append(folio_r)
+    datos_r.append([fecha, cant_retiro, hora])
+#HacerRetiro()
