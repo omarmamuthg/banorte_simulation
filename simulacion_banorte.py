@@ -28,6 +28,7 @@ def Depositos():
     while True:
         # AQUI DA LA MUESTRA PARA DEPOSITO A OTRA CUENTA QUE NO SEA LA PROPI
         tipo_deposito = input("\nDeposito a tu cuenta o deposito a otra cuenta? ")
+        print("hola")
 
         # AQUI VALISA QUE NO SE OMITA EL DATO
         if tipo_deposito == "":
